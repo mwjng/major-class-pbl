@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { Component } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
-const Home = () => {
-  const [date, setDate] = useState(new Date());
-  return (
-    <DatePicker selected={date} onChange={(date) => setDate(date)} withPortal />
-  );
-};
-
+class Home extends Component {
+    render() {
+        return (
+          <div className="App">
+            <FullCalendar 
+              defaultView="dayGridMonth" 
+              plugins={[ dayGridPlugin ]}
+            />
+          </div>
+        );
+    }
+}
 export default Home;

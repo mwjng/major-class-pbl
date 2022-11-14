@@ -7,13 +7,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
     "create-react-app": "^5.0.1",
+    "css-loader": "^6.7.2",
     "g": "^2.0.1",
+    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1"
   },
   "browserslist": {
     "production": [
