@@ -1,13 +1,12 @@
-/**
- * ch11/lec/proj/ch11-01-1
- * ./src/components/Home.js
- */
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const Home = () => (
-  <div>
-    <h1>Home</h1>
-    <p>Home, the first page.</p>
-  </div>
-);
+const Home = () => {
+  const [date, setDate] = useState(new Date());
+  return (
+    <DatePicker selected={date} onChange={(date) => setDate(date)} withPortal />
+  );
+};
 
 export default Home;

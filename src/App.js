@@ -1,7 +1,3 @@
-/**
- * ch11/lec/proj/ch11-01-1
- * ./src/App.js
- */
 
 import { Route, Routes } from 'react-router-dom';
 import Home from "./components/Home";
