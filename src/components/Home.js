@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction"
+import { useNavigate } from 'react-router-dom';
 
 class Home extends Component {
     render() {
@@ -15,8 +16,8 @@ class Home extends Component {
           </div>
         );
     }
-    handleDateClick = (arg) => { // bind with an arrow function
-      alert(arg.dateStr)
+    handleDateClick = (arg) => {
+      prompt(arg.dateStr);
     }
 }
 export default Home;
