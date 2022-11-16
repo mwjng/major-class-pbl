@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color:blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#f3f3f3;
+  padding: 8px 12px; 
+}
+
+.logo {
+  width: 20%;
+}
+
+.top-menu-nav {
+  width:80%;
+}
+
+.top-menu {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  padding: 8px 12px; 
+  margin-right: 20px;
+}
+
+.top-menu li {
+  padding: 8px 12px;
+}
+
+.main-menu {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#f3f3f3;
+  padding: 40px 24px;
+}
+
+.about {
+  display: flex;
+}
+
+.about-menu {
+  list-style: none;
+  padding: 12px 24px; 
+  width: 15%;  
+  line-height: 50px;
+}
+
+.events, .products, .contact {
+  padding-left: 30px;
+}
+
+.company, .history, .services, .locations {
+  width: 80%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
