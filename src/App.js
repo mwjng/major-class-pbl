@@ -5,7 +5,6 @@ import Register from "./components/register";
 const App = () => (
   <Routes>
     <Route path='/' element={<Home />} />
-    <Route path='/register' element={<Register />} />
   </Routes>
 );
 
