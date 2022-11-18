@@ -14,6 +14,7 @@ class Home extends Component {
               dateClick={this.handleDateClick}
               eventClick={this.handleEventClick}
               events={productData}
+              locale='ko
             />
           </div>
         );
