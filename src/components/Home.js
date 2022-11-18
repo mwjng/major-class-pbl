@@ -8,7 +8,8 @@ class Home extends Component {
           <div className="App">
             <FullCalendar 
               defaultView="dayGridMonth" 
-              plugins={[ dayGridPlugin ]}
+              locale='ko'
+              plugins={[ dayGridPlugin]}
             />
           </div>
         );
