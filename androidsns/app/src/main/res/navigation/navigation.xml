@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/timeline">
+
+    <fragment
+        android:id="@+id/timeline"
+        android:name="com.example.android_sns.Timeline"
+        android:label="타임라인"
+        tools:layout="@layout/fragment_timeline" />
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.android_sns.Profile"
+        android:label="프로필"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/friends"
+        android:name="com.example.android_sns.Friends"
+        android:label="친구목록"
+        tools:layout="@layout/fragment_friends" />
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.android_sns.Settings"
+        android:label="설정"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

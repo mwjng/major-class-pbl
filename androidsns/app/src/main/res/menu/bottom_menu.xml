@@ -5,17 +5,21 @@
     <item
         android:id="@+id/timeline"
         android:title="타임라인"
+        android:enabled="true"
         app:showAsAction="always"/>
     <item
         android:id="@+id/profile"
         android:title="프로필"
+        android:enabled="true"
         app:showAsAction="always"/>
     <item
         android:id="@+id/friends"
         android:title="친구목록"
+        android:enabled="true"
         app:showAsAction="always"/>
     <item
         android:id="@+id/settings"
         android:title="설정"
+        android:enabled="true"
         app:showAsAction="always"/>
 </menu>
