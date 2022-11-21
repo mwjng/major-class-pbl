@@ -3,6 +3,10 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction"
 import productData from "../data/product-data.json";
+<<<<<<< Updated upstream
+=======
+import {firestore} from "../firebase_config"
+>>>>>>> Stashed changes
 
 class Home extends Component {
     render() {
