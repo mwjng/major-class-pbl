@@ -4,12 +4,11 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 import productData from "../data/product-data.json";
-<<<<<<< Updated upstream
-import {firestore} from "../firebase_config";
-=======
+
+
 import { collection, getDocs } from "firebase/firestore";
 import {firestore} from "../firebase_config"
->>>>>>> Stashed changes
+
 import styled from "@emotion/styled";
 
 export const StyleWrapper = styled.div`
@@ -32,8 +31,6 @@ export const StyleWrapper = styled.div`
 }
 `
 
-<<<<<<< Updated upstream
-=======
 const calendar_data = firestore.collection("calendar_data");
 /*
 const [eventsData, setEventsData] = useState({})
@@ -65,7 +62,7 @@ useEffect(()=>{
   getEvents();
 },[])
 
->>>>>>> Stashed changes
+
 class Home extends Component {
     render() {
         return (
@@ -75,17 +72,14 @@ class Home extends Component {
               defaultView="dayGridMonth" 
               plugins={[ dayGridPlugin, interactionPlugin ]}
               dateClick={this.handleDateClick}
-<<<<<<< Updated upstream
-              eventClick={this.handleEventClick}   
-              events={productData}
-=======
+
               eventClick={this.handleEventClick}
               //events={productData}
               events={events}
               editable={true}
               droppable={true}
               selectable={true}
->>>>>>> Stashed changes
+
               locale='ko'
             />
             </StyleWrapper>
@@ -94,15 +88,7 @@ class Home extends Component {
     }
    
     handleDateClick = (arg) => {
-<<<<<<< Updated upstream
-      const calendar_data = firestore.collection("calendar_data");
-      var a = prompt(arg.dateStr);
-      calendar_data.add( { date : arg.dateStr , title : `${a}`})
-    }
 
-    handleEventClick = (info) => {
-      console.log("")
-=======
       var plan = prompt(arg.dateStr);
       if (plan) {
         calendar_data.doc(arg.dateStr).set( { date : arg.dateStr , title : `${plan}`})
@@ -114,7 +100,7 @@ class Home extends Component {
       if (del) {
         calendar_data.doc(info.event.startStr).delete();
       }
->>>>>>> Stashed changes
+
     }
 }
 export default Home;
