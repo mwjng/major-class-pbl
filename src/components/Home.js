@@ -29,7 +29,7 @@ var event;
 /*
 const [eventsData, setEventsData] = useState({})
 const getEventsData = () => { 
-  firebase.firestore().collection("Events").get().then((snapshot) => {
+  firebase.firestore().collection("calendat_data").get().then((snapshot) => {
     const events = snapshot.docs.map(event => event.data());
     setEventsData(events)
     console.log(events)
@@ -60,6 +60,9 @@ class Home extends Component {
               dateClick={this.handleDateClick}
               eventClick={this.handleEventClick}   
               events={productData}
+              editable={true}
+              droppable={true}
+              selectable={true}
               locale='ko'
             />
             </StyleWrapper>
