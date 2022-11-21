@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from "@fullcalendar/interaction"
+import interactionPlugin from "@fullcalendar/interaction";
 import productData from "../data/product-data.json";
-import {firestore} from "../firebase_config"
+import {firestore} from "../firebase_config";
 import styled from "@emotion/styled";
 
 export const StyleWrapper = styled.div`
