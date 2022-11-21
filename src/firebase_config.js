@@ -20,10 +20,5 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// firebaseConfig 정보로 firebase 시작
-firebase.initializeApp(firebaseConfig);
-
-// firebase의 firestore 인스턴스를 변수에 저장
-const firestore = firebase.firestore;
-
-export { firestore };
+export default firebase.initializeApp(firebaseConfig);
+export const firestore = firebase.firestore;
