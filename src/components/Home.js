@@ -27,7 +27,7 @@ class Home extends Component {
     }
 
     handleEventClick = (info) => {
-      console.log(firebaseConfig)  
+      console.log(firebaseConfig);
     }
 }
 export default Home;
