@@ -3,14 +3,9 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-<<<<<<< Updated upstream
 
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-=======
 import {getFirestore} from "@firebase/firestore"
->>>>>>> Stashed changes
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAwUAyreUB_KuEZW3JYRWB1PSIVyjXDNOw",
@@ -25,9 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export default firebase.initializeApp(firebaseConfig);
-<<<<<<< Updated upstream
-export const firestore = firebase.firestore;
-=======
+
 export const firestore = firebase.firestore();
 export const db = getFirestore(app);
->>>>>>> Stashed changes
+
