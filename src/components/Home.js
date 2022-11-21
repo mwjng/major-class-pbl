@@ -3,10 +3,8 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction"
 import productData from "../data/product-data.json";
-<<<<<<< Updated upstream
-=======
 import {firestore} from "../firebase_config"
->>>>>>> Stashed changes
+import firebaseConfig from "../firebase_config"
 
 class Home extends Component {
     render() {
@@ -18,7 +16,7 @@ class Home extends Component {
               dateClick={this.handleDateClick}
               eventClick={this.handleEventClick}
               events={productData}
-              locale='ko
+              locale='ko'
             />
           </div>
         );
@@ -29,7 +27,7 @@ class Home extends Component {
     }
 
     handleEventClick = (info) => {
-      prompt();   
+      console.log(firebaseConfig);
     }
 }
 export default Home;
