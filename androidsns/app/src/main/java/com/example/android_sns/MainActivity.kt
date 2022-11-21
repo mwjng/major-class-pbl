@@ -12,6 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
+    private val binding by lazy{ActivityMainBinding.inflate(layoutInflater)}
 
     private lateinit var timeline: Timeline
     private lateinit var profile: Profile
@@ -20,8 +21,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        //val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Manifest.permission.READ_EXTERNAL_STORAGE
+        requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
 
         if (Firebase.auth.currentUser == null) {
             startActivity(
@@ -85,4 +89,33 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun requestPermission(perm: String) {
+        if (checkSelfPermission(perm) == PackageManager.PERMISSION_GRANTED)
+            return
+
+        val requestPermLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+            val noPerms = it.filter { item -> item.value == false }.keys
+            if (noPerms.isNotEmpty()) { // there is a permission which is not granted!
+                AlertDialog.Builder(this).apply {
+                    setTitle("Warning")
+                    //setMessage(getString(R.string.no_permission, noPerms.toString()))
+                }.show()
+            }
+        }
+
+        if (shouldShowRequestPermissionRationale(perm)) {
+            // you should explain the reason why this app needs the permission.
+            AlertDialog.Builder(this).apply {
+                setTitle("Reason")
+                //setMessage(getString(R.string.req_permission_reason, perm))
+                setPositiveButton("Allow") { _, _ -> requestPermLauncher.launch(arrayOf(perm)) }
+                setNegativeButton("Deny") { _, _ -> }
+            }.show()
+        } else {
+            // should be called in onCreate()
+            requestPermLauncher.launch(arrayOf(perm))
+        }
+    }
+
 }

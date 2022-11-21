@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
+import java.util.jar.Manifest
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +28,10 @@ class Profile : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var profileImage : ImageView
+    val readImg = registerForActivityResult(ActivityResultContracts.GetContent()){
+        profileImage.setImageURI(it)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +47,23 @@ class Profile : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val profile = view.findViewById<Button>(R.id.profile_btn)
-
+        val friend_btn = view.findViewById<Button>(R.id.friend_btn)
+        profileImage = view.findViewById<ImageView>(R.id.profile_img)
+        profileImage.setOnClickListener {
+            // 프로필 사진 클릭
+            //navigatePhotos()
+            readImg.launch("image/*")
+        }
         profile.setOnClickListener {
             startActivity(Intent(activity, ProfileSetting::class.java))
         }
+        friend_btn.setOnClickListener {
+            // 친구 추가 버튼
+            startActivity(Intent(activity,FriendAdd::class.java))
+        }
         return view
     }
+
 
     companion object {
         /**
@@ -65,5 +83,10 @@ class Profile : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    private fun navigatePhotos(){
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.type = "images/*"
+        //val permissonCheck = requireActivity().checkSelfPermission();
     }
 }
