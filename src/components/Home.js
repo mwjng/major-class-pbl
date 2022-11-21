@@ -4,7 +4,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction"
 import productData from "../data/product-data.json";
 import {firestore} from "../firebase_config"
-import firebase from "../firebase_config"
 import styled from "@emotion/styled";
 
 export const StyleWrapper = styled.div`
@@ -46,11 +45,13 @@ class Home extends Component {
     }
    
     handleDateClick = (arg) => {
-      prompt(arg.dateStr);
+      const calendar_data = firestore.collection("calendar_data");
+      var a = prompt(arg.dateStr);
+      calendar_data.add( { date : arg.dateStr , title : `${a}`})
     }
 
     handleEventClick = (info) => {
-       
+      console.log("")
     }
 }
 export default Home;
