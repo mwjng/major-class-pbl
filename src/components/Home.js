@@ -7,7 +7,6 @@ import {firestore} from "../firebase_config"
 import styled from "@emotion/styled";
 
 export const StyleWrapper = styled.div`
-
 .fc-day-sun a {
   color: #FFD700;
   text-decoration: none;
@@ -25,6 +24,24 @@ export const StyleWrapper = styled.div`
   background: #FFFAF0;
 }
 `
+const calendar_data = firestore.collection("calendar_data");
+var event;
+/*
+const [eventsData, setEventsData] = useState({})
+const getEventsData = () => { 
+  firebase.firestore().collection("Events").get().then((snapshot) => {
+    const events = snapshot.docs.map(event => event.data());
+    setEventsData(events)
+    console.log(events)
+  }).catch((e) => {
+    console.log(e + "fetching error")
+  })
+}
+
+useEffect(() => {
+   getEventsData()
+ },[])
+*/
 
 class Home extends Component {
     render() {
@@ -34,6 +51,12 @@ class Home extends Component {
             <FullCalendar 
               defaultView="dayGridMonth" 
               plugins={[ dayGridPlugin, interactionPlugin ]}
+              handleWindowResize={true}
+              headerToolbar={{
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,dayGridWeek,dayGridDay",
+              }}
               dateClick={this.handleDateClick}
               eventClick={this.handleEventClick}   
               events={productData}
@@ -45,9 +68,8 @@ class Home extends Component {
     }
    
     handleDateClick = (arg) => {
-      const calendar_data = firestore.collection("calendar_data");
-      var a = prompt(arg.dateStr);
-      calendar_data.add( { date : arg.dateStr , title : `${a}`})
+      event = prompt("일정을 입력하세요.", "");
+      calendar_data.add( { date : arg.dateStr , title : `${event}`})
     }
 
     handleEventClick = (info) => {
