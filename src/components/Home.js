@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { useState, useEffect} from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 import productData from "../data/product-data.json";
-
-
-import { collection, getDocs } from "firebase/firestore";
 import {firestore} from "../firebase_config"
-
 import styled from "@emotion/styled";
-
 export const StyleWrapper = styled.div`
 
 .fc-day-sun a {
@@ -48,24 +42,11 @@ useEffect(() => {
  },[])
 */
 
-const [events, setEvents] = useState([]);
-const eventsCollectionRef = collection(db, "calendar_data");
-
-useEffect(()=>{
-  // 비동기로 데이터 받을준비
-  const getEvents = async () => {
-   // getDocs로 컬렉션안에 데이터 가져오기
-    const data = await getDocs(eventsCollectionRef);
-    // users에 data안의 자료 추가. 객체에 id 덮어씌우는거
-    setEvents(data.docs.map((doc)=>({ ...doc.data()})))
-  }
-  getEvents();
-},[])
-
-
 class Home extends Component {
+  
     render() {
         return (
+          
           <div className="App" style={{backgroundColor:"#FFFAF0"}}>
             <StyleWrapper>
             <FullCalendar 
@@ -75,7 +56,9 @@ class Home extends Component {
 
               eventClick={this.handleEventClick}
               //events={productData}
-              events={events}
+              events={[
+                //firebase불러오기
+              ]}
               editable={true}
               droppable={true}
               selectable={true}
@@ -92,6 +75,7 @@ class Home extends Component {
       var plan = prompt(arg.dateStr);
       if (plan) {
         calendar_data.doc(arg.dateStr).set( { date : arg.dateStr , title : `${plan}`})
+        CalendarSpread();
       }
     }
 
@@ -100,7 +84,6 @@ class Home extends Component {
       if (del) {
         calendar_data.doc(info.event.startStr).delete();
       }
-
     }
 }
 export default Home;
