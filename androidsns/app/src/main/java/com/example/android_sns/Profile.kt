@@ -65,6 +65,10 @@ class Profile : Fragment() {
 
         // 아직 db 연동 안하고 테스트 변수
         var UserList = arrayListOf<User>(
+            User("title","name","hello","1", "1-0"),
+            User("title","name","hello","1", "1-0"),
+            User("title","name","hello","1", "1-0"),
+            User("title","name","hello","1", "1-0"),
             User("title","name","hello","1", "1-0"))
 
         var Adapter = ListAdapter(context, UserList)
