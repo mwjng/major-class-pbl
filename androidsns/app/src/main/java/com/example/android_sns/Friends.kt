@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +38,19 @@ class Friends : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friends, container, false)
+        val view = inflater.inflate(R.layout.fragment_friends, container, false)
+
+
+        var UserList = arrayListOf<User>(
+            User("title","name","hello","1", "1-0"),
+            User("title","name","hello","1", "1-0"),
+            User("title","name","hello","1", "1-0"),
+            User("title","name","hello","1", "1-0"),
+            User("title","name","hello","1", "1-0"))
+
+        var Adapter = FriendsAdapter(context, UserList)
+        view.findViewById<ListView>(R.id.friendlist).adapter = Adapter
+        return view
     }
 
     companion object {
