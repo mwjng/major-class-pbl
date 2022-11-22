@@ -8,7 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.jar.Manifest
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,6 +34,9 @@ class Profile : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var profileImage : ImageView
+    val db: FirebaseFirestore = Firebase.firestore
+    val email = Firebase.auth.currentUser?.email.toString()
+    val itemsCollectionRef = db.collection("users")
     val readImg = registerForActivityResult(ActivityResultContracts.GetContent()){
         profileImage.setImageURI(it)
     }
@@ -45,10 +53,14 @@ class Profile : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val profile = view.findViewById<Button>(R.id.profile_btn)
         val friend_btn = view.findViewById<Button>(R.id.friend_btn)
         profileImage = view.findViewById<ImageView>(R.id.profile_img)
+
+        queryItem(email, view)
+
         profileImage.setOnClickListener {
             // 프로필 사진 클릭
             //navigatePhotos()
@@ -62,6 +74,15 @@ class Profile : Fragment() {
             startActivity(Intent(activity,FriendAdd::class.java))
         }
         return view
+    }
+
+    private fun queryItem(itemID: String, view: View) {
+        itemsCollectionRef.document(itemID).get()
+            .addOnSuccessListener {
+                view.findViewById<TextView>(R.id.profile_name).setText(it["nickname"].toString())
+                view.findViewById<TextView>(R.id.profile_msg).setText(it["message"].toString())
+            }.addOnFailureListener {
+            }
     }
 
 

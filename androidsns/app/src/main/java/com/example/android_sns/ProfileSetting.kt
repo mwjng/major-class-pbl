@@ -38,7 +38,7 @@ class ProfileSetting : AppCompatActivity() {
                 .addOnSuccessListener {  }
                 .addOnFailureListener {  }
 
-            finish()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         binding.cancel.setOnClickListener {
