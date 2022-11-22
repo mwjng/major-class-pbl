@@ -42,6 +42,7 @@ class Profile : Fragment() {
         profileImage.setImageURI(it)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -62,7 +63,11 @@ class Profile : Fragment() {
 
         queryItem(email, view)
 
-        var Adapter = ListAdapter(context, email)
+        // 아직 db 연동 안하고 테스트 변수
+        var UserList = arrayListOf<User>(
+            User("title","name","hello","1", "1-0"))
+
+        var Adapter = ListAdapter(context, UserList)
         view.findViewById<ListView>(R.id.list2).adapter = Adapter
 
         profileImage.setOnClickListener {

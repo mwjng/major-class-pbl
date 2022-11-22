@@ -6,25 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
-class ListAdapter(val context: Context?, val email: String) : BaseAdapter() {
-    val db: FirebaseFirestore = Firebase.firestore
-    val itemsCollectionRef = db.collection("users")
+class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAdapter() {
 
     override fun getCount(): Int {
-        var count = 0
-        itemsCollectionRef.document(email).get()
-            .addOnSuccessListener {
-                count = it["uploadCount"].toString().toInt()
-            }.addOnFailureListener {
-            }
-        return count
+        return UserList.size
     }
-    override fun getItem(i: Int): Int {
-        return 0
+    override fun getItem(count: Int): Any {
+        return UserList[count]
     }
     override fun getItemId(i: Int): Long {
         return 0
@@ -38,15 +27,12 @@ class ListAdapter(val context: Context?, val email: String) : BaseAdapter() {
         val like = view.findViewById<TextView>(R.id.time_count)
         val date = view.findViewById<TextView>(R.id.time_date)
 
-        itemsCollectionRef.document(email).collection("upload").document(count.toString()).get()
-            .addOnSuccessListener {
-                title.text = it["title"].toString()
-                name.text = it["nickname"].toString()
-                content.text = it["content"].toString()
-                like.text = it["like"].toString()
-                date.text = it["date"].toString()
-            }.addOnFailureListener {
-            }
+        val user = UserList[count]
+        title.text = user.title
+        name.text = user.name
+        content.text = user.content
+        like.text = user.like
+        date.text = user.date
 
         return view
     }
