@@ -8,13 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.util.jar.Manifest
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,6 +61,9 @@ class Profile : Fragment() {
         profileImage = view.findViewById<ImageView>(R.id.profile_img)
 
         queryItem(email, view)
+
+        var Adapter = ListAdapter(context, email)
+        view.findViewById<ListView>(R.id.list2).adapter = Adapter
 
         profileImage.setOnClickListener {
             // 프로필 사진 클릭
