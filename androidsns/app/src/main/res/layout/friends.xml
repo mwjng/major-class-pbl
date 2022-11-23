@@ -6,21 +6,29 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewf"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginRight="120dp"
         app:srcCompat="@drawable/basic" />
 
     <TextView
         android:id="@+id/friendname"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="30dp"
         android:text="TextView"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/fprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="프로필" />
 </LinearLayout>
