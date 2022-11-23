@@ -23,9 +23,4 @@
         android:label="친구목록"
         tools:layout="@layout/fragment_friends" />
 
-    <fragment
-        android:id="@+id/settings"
-        android:name="com.example.android_sns.Settings"
-        android:label="설정"
-        tools:layout="@layout/fragment_settings" />
 </navigation>

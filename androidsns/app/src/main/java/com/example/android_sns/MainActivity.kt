@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var timeline: Timeline
     private lateinit var profile: Profile
     private lateinit var friends: Friends
-    private lateinit var settings: Settings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,13 +59,6 @@ class MainActivity : AppCompatActivity() {
                         friends = Friends().newInstance()
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.frm, friends).commit()
-                        true
-
-                    }
-                    R.id.settings -> {
-                        settings = Settings().newInstance()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.frm, settings).commit()
                         true
 
                     }

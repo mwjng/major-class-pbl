@@ -17,9 +17,5 @@
         android:title="친구목록"
         android:enabled="true"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/settings"
-        android:title="설정"
-        android:enabled="true"
-        app:showAsAction="always"/>
+
 </menu>
