@@ -52,12 +52,18 @@ class Home extends Component {
             <FullCalendar 
               defaultView="dayGridMonth" 
               plugins={[ dayGridPlugin, interactionPlugin ]}
+              handleWindowResize={true}
+              headerToolbar={{
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,dayGridWeek,dayGridDay",
+              }}
               dateClick={this.handleDateClick}
 
               eventClick={this.handleEventClick}
               //events={productData}
               events={[
-                //firebase불러오기
+                
               ]}
               editable={true}
               droppable={true}
