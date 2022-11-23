@@ -34,8 +34,11 @@ class SignupActivity : AppCompatActivity() {
                 if (it.isSuccessful) {
                     val db: FirebaseFirestore = Firebase.firestore
                     val itemMap = hashMapOf(
+                        "email" to userEmail,
                         "nickname" to nickname,
                         "message" to "",
+                        "image" to 0,
+                        "friend" to false
                     )
                     db.collection("users").document(userEmail).set(itemMap)
                     startActivity(
