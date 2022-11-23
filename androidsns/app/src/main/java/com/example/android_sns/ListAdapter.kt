@@ -20,6 +20,7 @@ class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAd
     }
 
     override fun getView(count: Int, convertView: View?, parent: ViewGroup?): View {
+        // 이미지 추가
         val view : View = LayoutInflater.from(parent?.context).inflate(R.layout.card, null)
         val title = view.findViewById<TextView>(R.id.time_title)
         val name = view.findViewById<TextView>(R.id.time_name)
@@ -31,7 +32,7 @@ class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAd
         title.text = user.title
         name.text = user.name
         content.text = user.content
-        like.text = user.like
+        like.text = user.like.toString()
         date.text = user.date
 
         return view

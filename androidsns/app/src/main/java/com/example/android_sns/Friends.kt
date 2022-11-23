@@ -41,12 +41,13 @@ class Friends : Fragment() {
         val view = inflater.inflate(R.layout.fragment_friends, container, false)
 
 
+
         var UserList = arrayListOf<User>(
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"))
+            User(0,"","title","name1","hello",1, "1-0"),
+            User(0,"","title","name2","hello",1, "1-0"),
+            User(0,"","title","name3","hello",1, "1-0"),
+            User(0,"","title","name4","hello",1, "1-0"),
+            User(0,"","title","name5","hello",1, "1-0"))
 
         var Adapter = FriendsAdapter(context, UserList)
         view.findViewById<ListView>(R.id.friendlist).adapter = Adapter
