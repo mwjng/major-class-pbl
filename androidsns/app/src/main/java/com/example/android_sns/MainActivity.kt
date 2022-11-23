@@ -10,7 +10,6 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import com.example.android_sns.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -87,6 +86,12 @@ class MainActivity : AppCompatActivity() {
                 Firebase.auth.signOut()
                 startActivity(
                     Intent(this, LoginActivity::class.java)
+                )
+                finish()
+            }
+            R.id.write -> {
+                startActivity(
+                    Intent(this, WriteActivity::class.java)
                 )
                 finish()
             }
