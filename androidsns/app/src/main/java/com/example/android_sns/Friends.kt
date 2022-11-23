@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +25,10 @@ class Friends : Fragment() {
     fun newInstance() : Friends {
         return Friends()
     }
+    val db: FirebaseFirestore = Firebase.firestore
+    val email = Firebase.auth.currentUser?.email.toString()
+    val itemsCollectionRef = db.collection("users")
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -39,18 +47,16 @@ class Friends : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_friends, container, false)
+        var UserList = arrayListOf<Friend>()
 
+        itemsCollectionRef.document(email).collection("friends").get().addOnSuccessListener {
+            for (doc in it) {
+                UserList.add(Friend(doc["image"].toString().toInt(), doc["email"].toString(), doc["nickname"].toString()))
+            }
+            var Adapter = FriendsAdapter(context, UserList)
+            view.findViewById<ListView>(R.id.friendlist).adapter = Adapter
+        }
 
-
-        var UserList = arrayListOf<User>(
-            User(0,"","","title","name1","hello",1, "1-0"),
-            User(0,"","","title","name2","hello",1, "1-0"),
-            User(0,"","","title","name3","hello",1, "1-0"),
-            User(0,"","","title","name4","hello",1, "1-0"),
-            User(0,"","","title","name5","hello",1, "1-0"))
-
-        var Adapter = FriendsAdapter(context, UserList)
-        view.findViewById<ListView>(R.id.friendlist).adapter = Adapter
         return view
     }
 

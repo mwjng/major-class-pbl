@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -46,6 +47,7 @@ class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAd
             itemsCollectionRef.document(user.writer).collection("upload").document(user.id).update("like", user.like+1)
                 .addOnSuccessListener {  }
                 .addOnFailureListener {  }
+            Toast.makeText(context, "좋아요", Toast.LENGTH_SHORT).show();
         }
 
         return view

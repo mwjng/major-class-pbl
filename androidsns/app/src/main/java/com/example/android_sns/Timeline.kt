@@ -51,13 +51,37 @@ class Timeline : Fragment() {
 
         var UserList = arrayListOf<User>()
 
-        itemsCollectionRef.document(email).collection("upload").get().addOnSuccessListener {
-            for (doc in it) {
-                UserList.add(User(doc["image"].toString().toInt(), email, doc.id, doc["title"].toString(), doc["nickname"].toString(),
-                    doc["content"].toString(), doc["like"].toString().toInt(), doc["date"].toString()))
+
+        var boo = true
+        itemsCollectionRef.document(email).get()
+            .addOnSuccessListener {
+                boo = it["friend"].toString().toBoolean()
+            }.addOnFailureListener{}
+
+        if (boo) {
+            itemsCollectionRef.document(email).collection("friends").get().addOnSuccessListener {
+                for (doc1 in it) {
+                    itemsCollectionRef.document(doc1.id).collection("upload").get()
+                        .addOnSuccessListener {
+                            for (doc in it) {
+                                UserList.add(
+                                    User(
+                                        doc["image"].toString().toInt(),
+                                        doc["writer"].toString(),
+                                        doc.id,
+                                        doc["title"].toString(),
+                                        doc["nickname"].toString(),
+                                        doc["content"].toString(),
+                                        doc["like"].toString().toInt(),
+                                        doc["date"].toString()
+                                    )
+                                )
+                            }
+                            var Adapter = ListAdapter(context, UserList)
+                            view.findViewById<ListView>(R.id.listview).adapter = Adapter
+                        }
+                }
             }
-            var Adapter = ListAdapter(context, UserList)
-            view.findViewById<ListView>(R.id.listview).adapter = Adapter
         }
 
         return view

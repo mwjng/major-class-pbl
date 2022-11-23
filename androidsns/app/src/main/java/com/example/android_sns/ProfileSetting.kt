@@ -21,7 +21,7 @@ class ProfileSetting : AppCompatActivity() {
         Firebase.auth.currentUser ?: finish()
 
         val db: FirebaseFirestore = Firebase.firestore
-        //val itemsCollectionRef = db.collection("users")
+        val itemsCollectionRef = db.collection("users")
 
         binding.confirm.setOnClickListener {
             // 프로필 수정 작업
@@ -29,14 +29,8 @@ class ProfileSetting : AppCompatActivity() {
             val message = binding.message.text
             val email = Firebase.auth.currentUser?.email.toString()
 
-            val itemMap = hashMapOf(
-                "nickname" to nickName.toString(),
-                "message" to message.toString()
-            )
-            db.collection("users").document(email.toString())
-                .set(itemMap)
-                .addOnSuccessListener {  }
-                .addOnFailureListener {  }
+            itemsCollectionRef.document(email).update("nickname", nickName.toString())
+            itemsCollectionRef.document(email).update("message", message.toString())
 
             startActivity(Intent(this, MainActivity::class.java))
         }

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class FriendsAdapter (val context: Context?, val UserList: ArrayList<User>) : BaseAdapter(){
+class FriendsAdapter (val context: Context?, val UserList: ArrayList<Friend>) : BaseAdapter(){
 
         override fun getCount(): Int {
             return UserList.size
@@ -23,7 +23,7 @@ class FriendsAdapter (val context: Context?, val UserList: ArrayList<User>) : Ba
             val view : View = LayoutInflater.from(parent?.context).inflate(R.layout.friends, null)
             val name = view.findViewById<TextView>(R.id.friendname)
             val user = UserList[count]
-            name.text = user.name
+            name.text = user.nickname
 
             return view
         }

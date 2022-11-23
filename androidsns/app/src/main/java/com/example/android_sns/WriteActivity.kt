@@ -51,6 +51,7 @@ class WriteActivity : AppCompatActivity(){
             val itemMap = hashMapOf(
                 // 이미지 필요
                 "image" to 0,
+                "writer" to email,
                 "nickname" to nickname.toString(),
                 "title" to title.toString(),
                 "content" to content.toString(),
