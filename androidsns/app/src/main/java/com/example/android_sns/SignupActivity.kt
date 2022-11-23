@@ -35,7 +35,7 @@ class SignupActivity : AppCompatActivity() {
                     val db: FirebaseFirestore = Firebase.firestore
                     val itemMap = hashMapOf(
                         "nickname" to nickname,
-                        "message" to ""
+                        "message" to "",
                     )
                     db.collection("users").document(userEmail).set(itemMap)
                     startActivity(
