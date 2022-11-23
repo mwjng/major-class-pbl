@@ -1,5 +1,7 @@
 package com.example.android_sns
 
+import android.content.ClipData
+import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -59,19 +61,18 @@ class Profile : Fragment() {
         val profile = view.findViewById<Button>(R.id.profile_btn)
         val friend_btn = view.findViewById<Button>(R.id.friend_btn)
         profileImage = view.findViewById<ImageView>(R.id.profile_img)
+        var UserList = arrayListOf<User>()
+
+        itemsCollectionRef.document(email).collection("upload").get().addOnSuccessListener {
+            for (doc in it) {
+                UserList.add(User(doc["image"].toString().toInt(), doc.id, doc["title"].toString(), doc["nickname"].toString(),
+                    doc["content"].toString(), doc["like"].toString().toInt(), doc["date"].toString()))
+            }
+            var Adapter = ListAdapter(context, UserList)
+            view.findViewById<ListView>(R.id.list2).adapter = Adapter
+        }
 
         queryItem(email, view)
-
-        // 아직 db 연동 안하고 테스트 변수
-        var UserList = arrayListOf<User>(
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"))
-
-        var Adapter = ListAdapter(context, UserList)
-        view.findViewById<ListView>(R.id.list2).adapter = Adapter
 
         profileImage.setOnClickListener {
             // 프로필 사진 클릭

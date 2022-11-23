@@ -7,6 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +30,10 @@ class Timeline : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    val db: FirebaseFirestore = Firebase.firestore
+    val email = Firebase.auth.currentUser?.email.toString()
+    val itemsCollectionRef = db.collection("users")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,15 +49,16 @@ class Timeline : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_timeline, container, false)
 
-        var UserList = arrayListOf<User>(
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"),
-            User("title","name","hello","1", "1-0"))
+        var UserList = arrayListOf<User>()
 
-        var Adapter = ListAdapter(context, UserList)
-        view.findViewById<ListView>(R.id.listview).adapter = Adapter
+        itemsCollectionRef.document(email).collection("upload").get().addOnSuccessListener {
+            for (doc in it) {
+                UserList.add(User(doc["image"].toString().toInt(), doc.id, doc["title"].toString(), doc["nickname"].toString(),
+                    doc["content"].toString(), doc["like"].toString().toInt(), doc["date"].toString()))
+            }
+            var Adapter = ListAdapter(context, UserList)
+            view.findViewById<ListView>(R.id.listview).adapter = Adapter
+        }
 
         return view
     }
