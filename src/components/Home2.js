@@ -10,7 +10,7 @@ import { render } from 'node-sass';
 
 
 const calendar_data = firestore.collection("calendar_data");
-function Home2 () {
+const Home2 = () => {
     const [events, setEvents] = useState([]);
     const eventsCollectionRef = collection(db, "calendar_data");
 
@@ -23,12 +23,6 @@ function Home2 () {
         }
         getEvents();
     }, [])
-
-
-        return (
-
-        );
-
+    return <div>{events}</div>;
 };
-
 export default Home2;
