@@ -53,7 +53,7 @@ class Timeline : Fragment() {
 
         itemsCollectionRef.document(email).collection("upload").get().addOnSuccessListener {
             for (doc in it) {
-                UserList.add(User(doc["image"].toString().toInt(), doc.id, doc["title"].toString(), doc["nickname"].toString(),
+                UserList.add(User(doc["image"].toString().toInt(), email, doc.id, doc["title"].toString(), doc["nickname"].toString(),
                     doc["content"].toString(), doc["like"].toString().toInt(), doc["date"].toString()))
             }
             var Adapter = ListAdapter(context, UserList)

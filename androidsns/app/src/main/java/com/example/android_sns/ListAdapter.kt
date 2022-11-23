@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.TextView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAdapter() {
 
@@ -34,6 +38,15 @@ class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAd
         content.text = user.content
         like.text = user.like.toString()
         date.text = user.date
+
+        view.findViewById<Button>(R.id.timeID).setOnClickListener {
+            like.text = (user.like+1).toString()
+            val db: FirebaseFirestore = Firebase.firestore
+            val itemsCollectionRef = db.collection("users")
+            itemsCollectionRef.document(user.writer).collection("upload").document(user.id).update("like", user.like+1)
+                .addOnSuccessListener {  }
+                .addOnFailureListener {  }
+        }
 
         return view
     }

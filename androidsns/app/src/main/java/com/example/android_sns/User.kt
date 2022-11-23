@@ -3,6 +3,7 @@ package com.example.android_sns
 class User (
     // 이미지 필요
     val image : Int,
+    val writer: String,
     val id : String,
     val title : String,
     val name : String,
