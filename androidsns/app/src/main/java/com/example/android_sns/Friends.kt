@@ -51,7 +51,7 @@ class Friends : Fragment() {
 
         itemsCollectionRef.document(email).collection("friends").get().addOnSuccessListener {
             for (doc in it) {
-                UserList.add(Friend(doc["image"].toString().toInt(), doc["email"].toString(), doc["nickname"].toString()))
+                UserList.add(Friend(doc["image"].toString().toInt(), doc["friends"].toString(), doc["nickname"].toString()))
             }
             var Adapter = FriendsAdapter(context, UserList)
             view.findViewById<ListView>(R.id.friendlist).adapter = Adapter
