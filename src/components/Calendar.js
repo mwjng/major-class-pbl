@@ -62,7 +62,6 @@ const Calendar = () => { //켈린더
     }
   }
   
-
   const handleDateClick = (arg) => { // 날짜누르면 일정 추가
     //<Modal open={modalopen} close={closeModal} header="Modal heading"></Modal>
     var event = prompt("일정을 입력하세요.",);
