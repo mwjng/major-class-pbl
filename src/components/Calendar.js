@@ -47,19 +47,26 @@ const Calendar = () => {
   }
   useEffect(() => {
     getEventsData()
-  }, [])
-
+  }, [eventsData])
 
   const handleDateSelect = (newDate) => {
     setDate(newDate);
     setVisible(true);
   };
 
+  // 클릭 시 이벤트 정보 받아옴
+  const handleEventClick = (clickInfo) => {
+    console.log(clickInfo.event.id) // id 값 나옴    
+    var del = confirm('삭제하시겠습니까?');
+    if (del) {
+      calendar_data.doc(clickInfo.event.startStr).delete();
+    }
+  }
+  
   const handleDateClick = (arg) => { // bind with an arrow function
     console.log(arg);
-
     //<Modal open={modalopen} close={closeModal} header="Modal heading"></Modal>
-    var event = prompt("일정을 입력하세요.",);;
+    var event = prompt("일정을 입력하세요.",);
     if (event) {
       calendar_data.doc(arg.dateStr).set({ date: arg.dateStr, title: `${event}` })
       console.log("데이터가 추가되었습니다.")
@@ -68,10 +75,6 @@ const Calendar = () => {
       console.log("데이터가 null입니다. 추가되지 않았습니다.")
   }
 
-  // 클릭 시 이벤트 정보 받아옴
-  const handleEventClick = (clickInfo) => {
-    console.log(clickInfo.event.id) // id 값 나옴    
-  }
 
   return (
       <FullCalendar
