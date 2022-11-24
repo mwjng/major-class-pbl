@@ -8,7 +8,8 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { firestore } from "../firebase_config"
 import { getDocs } from "firebase/firestore"
 import styled from "@emotion/styled";
-export const StyleWrapper = styled.div`
+//import Modal from "./components/Modal.js";
+export const StyleWrapper = styled.div`;
 
 .fc-day-sun a {
   color: #FFD700;
@@ -76,12 +77,13 @@ const Calendar = () => {
   };
 
   const handleDateClick = (arg) => { // bind with an arrow function
-    console.log(arg)
+    console.log(arg);
+
+    //<Modal open={modalopen} close={closeModal} header="Modal heading"></Modal>
     var event = prompt("일정을 입력하세요.",);;
     if (event) {
       calendar_data.doc(arg.dateStr).set({ date: arg.dateStr, title: `${event}` })
       console.log("데이터가 추가되었습니다.")
-      this.forcerender();
     }
     else
       console.log("데이터가 null입니다. 추가되지 않았습니다.")
