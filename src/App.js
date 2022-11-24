@@ -1,13 +1,11 @@
-import { Route, Routes} from "react-router-dom";
-import Home from "./components/Home";
-import Home2 from "./components/Home2";
+import { Route, Routes } from "react-router-dom";
+import Calendar, {Error, Main} from "./components/Calendar"; //캘린더 
 
 const App = () => (
   <Routes>
-    <Route path='/' element={<Home />} />
-    <Route path='/home2' element={<Home2 />} />
-
+    <Route path='/' element={<Main />}/>
+    <Route path='/Calendar' element={<Calendar />}/>
+    <Route path='*' element={<Error />}/>
   </Routes>
 );
-
 export default App;
