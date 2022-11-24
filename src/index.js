@@ -1,11 +1,13 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import firebase from './firebase_config';
+import firebaseconfig from './firebase_config.js';
+import { computeSegEndResizable } from '@fullcalendar/common';
 
-console.log(firebase)
+
 const element = document.getElementById('root')
 const root = createRoot(element);
+console.log(firebaseconfig);
 root.render(
   <BrowserRouter>
     <App />
