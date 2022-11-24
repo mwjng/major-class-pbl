@@ -1,0 +1,46 @@
+body {
+    background-color: #F5F5F5;
+}
+
+.mainPage{
+    background-color:#F5F5F5;
+    background-size: 70% 70%;
+    text-align:center;
+    font-size:large;
+    height: 100vw;
+    width: 100vw;
+}
+
+.fc-day-sun a {
+    color: #CA5E59;
+    text-decoration: none;
+  }
+  
+.fc-day-sat a {
+    color:#F15B5B;
+    text-decoration: none;
+}
+.fc td {
+      background:#D3D3D3;
+      color: #B4E5FF;;
+}
+.fc-day-mon a{
+    color: black;
+}
+.fc-day-wed a{
+    color: black;
+}
+.fc-day-tue a{
+    color: black;
+}
+.fc-day-fri a{
+    color: black;
+}
+.fc-day-thu a{
+    color: black;
+}
+
+.fc-event{
+    background: #6F606E;
+    
+  }
