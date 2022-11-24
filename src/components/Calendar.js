@@ -45,8 +45,8 @@ const Calendar = () => {
     })
   }
   useEffect(() => {
-    getEventsData()
-  }, [])
+    getEventsData();
+  }, [eventsData])
 
 
   const handleDateSelect = (newDate) => {
@@ -61,7 +61,7 @@ const Calendar = () => {
     var event = prompt("일정을 입력하세요.",);;
     if (event) {
       calendar_data.doc(arg.dateStr).set({ date: arg.dateStr, title: `${event}` })
-      console.log("데이터가 추가되었습니다.")
+      console.log("데이터가 추가되었습니다.");
     }
     else
       console.log("데이터가 null입니다. 추가되지 않았습니다.")
