@@ -40,7 +40,6 @@ const Calendar = () => {
     calendar_data.get().then((snapshot) => {
       const events = snapshot.docs.map(event => event.data());
       setEventsData(events)
-      console.log(events)
     }).catch((e) => {
       console.log(e + "fetching error")
     })
@@ -64,7 +63,6 @@ const Calendar = () => {
   }
   
   const handleDateClick = (arg) => { // bind with an arrow function
-    console.log(arg);
     //<Modal open={modalopen} close={closeModal} header="Modal heading"></Modal>
     var event = prompt("일정을 입력하세요.",);
     if (event) {
