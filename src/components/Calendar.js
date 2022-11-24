@@ -2,48 +2,27 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import '../style/style.css'
 import { Component } from 'react';
 import interactionPlugin from "@fullcalendar/interaction";
 import { firestore } from "../firebase_config"
-import { getDocs } from "firebase/firestore"
-import styled from "@emotion/styled";
-//import Modal from "./components/Modal.js";
-export const StyleWrapper = styled.div`;
-
-.fc-day-sun a {
-  color: #FFD700;
-  text-decoration: none;
-}
-
-.fc-day-sat a {
-  color: #FFA500;
-  text-decoration: none;
-}
-.fc td {
-    background: #FFFAF0;
-    color: #6F606E;
-  }
-.fc event{
-  background: #FFFAF0;
-}
-`
 
 export const Main = () => { //시작페이지
-  return (
-    <div>
-      <h3>TEAM : 2 0 1 8</h3>
-      <h2>C A L E N D A R</h2>
-    </div>
-  );
-}
+    return(
+      <div className='mainPage'>
+        <h1>TEAM : 2 0 1 8</h1>
+      <h1><Link to ="calendar">C A L E N D A R</Link></h1>
+      </div>
+    );
+  }
 
 
 export const Error = () => { //에러페이지
   const locations = useLocation();
   return (
     <div>
-      <h3>Page not found at {locations.pathname}</h3>
+      <h3> not found at {locations.pathname}</h3>
     </div>
   );
 }
@@ -61,7 +40,6 @@ const Calendar = () => {
     calendar_data.get().then((snapshot) => {
       const events = snapshot.docs.map(event => event.data());
       setEventsData(events)
-      console.log(events)
     }).catch((e) => {
       console.log(e + "fetching error")
     })
@@ -91,11 +69,11 @@ const Calendar = () => {
 
   // 클릭 시 이벤트 정보 받아옴
   const handleEventClick = (clickInfo) => {
+    
     console.log(clickInfo.event.id) // id 값 나옴    
   }
 
   return (
-    <StyleWrapper>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         headerToolbar={{
@@ -112,12 +90,8 @@ const Calendar = () => {
         weekends={true}
         events={eventsData}
         locale='ko'
-
       />
-    </StyleWrapper>
   );
 };
 
 export default Calendar;
-
-//test
