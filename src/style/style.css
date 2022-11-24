@@ -1,10 +1,9 @@
 body {
-    background-color: #F5F5F5;
+    background-color: #BDB76B
 }
 
 .mainPage{
-    background-color:#F5F5F5;
-    background-size: 70% 70%;
+    background-color:#BDB76B;
     text-align:center;
     font-size:large;
     height: 100vw;
@@ -21,8 +20,8 @@ body {
     text-decoration: none;
 }
 .fc td {
-      background:#D3D3D3;
-      color: #B4E5FF;;
+      background:#FFFFF0;
+      color: #FFFFF0;
 }
 .fc-day-mon a{
     color: black;
@@ -41,5 +40,5 @@ body {
 }
 
 .fc-event{
-    background: #6F606E;
+    background: OliveDrab;
   }
