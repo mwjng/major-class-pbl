@@ -2,7 +2,6 @@ import FullCalendar from '@fullcalendar/react';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import React, { useState } from 'react';
-
 import { Component } from 'react';
 import interactionPlugin from "@fullcalendar/interaction";
 import productData from "../data/product-data.json";
@@ -53,11 +52,9 @@ const Calendar = (props) => {
     setVisible(false);
   };
 
+
   const handleDateClick = (arg) => { // bind with an arrow function
     console.log(arg)
-      const calendar_data = firestore.collection("calendar_data");
-      var event = prompt("일정을 입력하세요.",);
-      calendar_data.doc(arg.dateStr).set( { date : arg.dateStr , title : `${event}`})
   }
 
   // 클릭 시 이벤트 정보 받아옴
@@ -66,25 +63,17 @@ const Calendar = (props) => {
     }
 
   return (
-    <StyleWrapper>
       <FullCalendar
         plugins={[dayGridPlugin,interactionPlugin]}
-        headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,dayGridWeek,dayGridDay",
-        }}
+        initialView="dayGridMonth"
         selectable = {true}
         dateClick={handleDateClick}
         eventClick={handleEventClick}
         select={handleDateSelect}
-        editable={true}
-        droppable={true}
         weekends={true}
-        events={productData}
-        
+        events={[]}
+        height="90vh"
       />
-      </StyleWrapper>
   );
 };
 

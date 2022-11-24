@@ -1,9 +1,9 @@
 import { Route, Routes} from "react-router-dom";
-import Home from "./components/Home";
+import Calendar from "./components/Calendar";
 
 const App = () => (
   <Routes>
-    <Route path='/' element={<Home />} />
+    <Route path='/' element={<Calendar />} />
   </Routes>
 );
 
