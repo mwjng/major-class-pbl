@@ -31,7 +31,7 @@ export const Error = () => { //에러페이지
 const today = new Date();
 const calendar_data = firestore.collection("calendar_data");
 
-const Calendar = () => {
+const Calendar = () => { //켈린더
   const [visible, setVisible] = useState(false);
   const [date, setDate] = useState(today);
 
@@ -53,7 +53,7 @@ const Calendar = () => {
     setVisible(true);
   };
 
-  // 클릭 시 이벤트 정보 받아옴
+  // 클릭 시 이벤트 정보 받고 삭제 질문
   const handleEventClick = (clickInfo) => {
     console.log(clickInfo.event.id) // id 값 나옴    
     var del = confirm('삭제하시겠습니까?');
@@ -62,7 +62,8 @@ const Calendar = () => {
     }
   }
   
-  const handleDateClick = (arg) => { // bind with an arrow function
+
+  const handleDateClick = (arg) => { // 날짜누르면 일정 추가
     //<Modal open={modalopen} close={closeModal} header="Modal heading"></Modal>
     var event = prompt("일정을 입력하세요.",);
     if (event) {
@@ -77,7 +78,7 @@ const Calendar = () => {
   return (
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
-        headerToolbar={{
+        headerToolbar={{ //툴바 위치, 위젯
           left: "prev,next today",
           center: "title",
           right: "dayGridMonth,dayGridWeek,dayGridDay",
