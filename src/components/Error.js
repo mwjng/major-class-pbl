@@ -7,4 +7,5 @@ const Error=()=>{ //에러페이지
         <h3>Page not found at {locations.pathname}</h3>
       </div>
     );
-  };export default Error
+  }
+  export default Error;

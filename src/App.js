@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home.js" //캘린더 페이지
-import Error from "./components/Error.js" //에러페이지
+import Home from "./components/Home" //캘린더 
+import Error from "./components/Error" //에러
 
 const App = () => (
   <Routes>
