@@ -96,6 +96,9 @@ class MainActivity : AppCompatActivity() {
                 )
                 finish()
             }
+            R.id.change -> {
+
+            }
         }
         return super.onOptionsItemSelected(item)
     }
