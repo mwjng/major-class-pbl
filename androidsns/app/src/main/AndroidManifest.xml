@@ -23,6 +23,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".Account" />
         <activity
             android:name=".ProfileSetting"
             android:exported="false"

@@ -4,6 +4,9 @@
         android:id="@+id/write"
         android:title="글작성" />
     <item
+        android:id="@+id/change"
+        android:title="회원정보변경" />
+    <item
         android:id="@+id/signout"
         android:title="로그아웃" />
 </menu>
