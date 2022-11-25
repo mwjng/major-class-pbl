@@ -124,18 +124,19 @@
 
                     <Button
                         android:id="@+id/timeID"
-                        android:layout_width="wrap_content"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:text="좋아요" />
+                        android:adjustViewBounds="true"
+                        android:drawableLeft="@drawable/resize" />
 
                     <TextView
                         android:id="@+id/time_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="count"
-                        android:layout_marginLeft="100dp"
+                        android:layout_marginLeft="70dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:layout_marginBottom="15dp"
+                        android:text="count" />
 
                     <TextView
                         android:id="@+id/time_date"
