@@ -58,31 +58,54 @@ class Timeline : Fragment() {
                 boo = it["friend"].toString().toBoolean()
             }.addOnFailureListener{}
 
-        if (boo) {
-            itemsCollectionRef.document(email).collection("friends").get().addOnSuccessListener {
-                for (doc1 in it) {
-                    itemsCollectionRef.document(doc1.id).collection("upload").get()
-                        .addOnSuccessListener {
-                            for (doc in it) {
-                                UserList.add(
-                                    User(
-                                        doc["image"].toString().toInt(),
-                                        doc["writer"].toString(),
-                                        doc.id,
-                                        doc["title"].toString(),
-                                        doc["nickname"].toString(),
-                                        doc["content"].toString(),
-                                        doc["like"].toString().toInt(),
-                                        doc["date"].toString()
-                                    )
-                                )
-                            }
-                            var Adapter = ListAdapter(context, UserList)
-                            view.findViewById<ListView>(R.id.listview).adapter = Adapter
+        itemsCollectionRef.document(email).collection("upload").get()
+            .addOnSuccessListener {
+                for (doc in it) {
+                    UserList.add(
+                        User(
+                            doc["image"].toString().toInt(),
+                            doc["writer"].toString(),
+                            doc.id,
+                            doc["title"].toString(),
+                            doc["nickname"].toString(),
+                            doc["content"].toString(),
+                            doc["like"].toString().toInt(),
+                            doc["date"].toString()
+                        )
+                    )
+                }
+                if (boo) {
+                    itemsCollectionRef.document(email).collection("friends").get().addOnSuccessListener {
+                        for (doc1 in it) {
+                            itemsCollectionRef.document(doc1.id).collection("upload").get()
+                                .addOnSuccessListener {
+                                    for (doc in it) {
+                                        UserList.add(
+                                            User(
+                                                doc["image"].toString().toInt(),
+                                                doc["writer"].toString(),
+                                                doc.id,
+                                                doc["title"].toString(),
+                                                doc["nickname"].toString(),
+                                                doc["content"].toString(),
+                                                doc["like"].toString().toInt(),
+                                                doc["date"].toString()
+                                            )
+                                        )
+                                    }
+                                    UserList.sortByDescending { it.date }
+                                    var Adapter = ListAdapter(context, UserList)
+                                    view.findViewById<ListView>(R.id.listview).adapter = Adapter
+                                }
                         }
+                    }
+                }
+                else {
+                    UserList.sortByDescending { it.date }
+                    var Adapter = ListAdapter(context, UserList)
+                    view.findViewById<ListView>(R.id.listview).adapter = Adapter
                 }
             }
-        }
 
         return view
     }
