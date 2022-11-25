@@ -21,6 +21,7 @@ class Account : AppCompatActivity() {
 
         binding.delete.setOnClickListener {
             deleteAccount()
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
     }
@@ -30,7 +31,7 @@ class Account : AppCompatActivity() {
             ?.addOnCompleteListener(this) {
                 Firebase.auth.sendPasswordResetEmail(pwd)
                     ?.addOnCompleteListener(this) {
-                        startActivity(Intent(this, LoginActivity::class.java))
+                        startActivity(Intent(this, MainActivity::class.java))
                     }
             }
     }
