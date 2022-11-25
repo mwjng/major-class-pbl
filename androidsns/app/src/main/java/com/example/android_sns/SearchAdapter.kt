@@ -35,27 +35,33 @@ class SearchAdapter (val context: Context?, val UserList: ArrayList<Member>) : B
         name.text = user.nickname
 
         view.findViewById<Button>(R.id.add).setOnClickListener {
-            val itemMap = hashMapOf(
-                "image" to user.image,
-                "friends" to user.email,
-                "nickname" to user.nickname
-            )
-            itemsCollectionRef.document(email).collection("friends").document(user.email)
-                .set(itemMap)
-                .addOnSuccessListener {  }
-                .addOnFailureListener {  }
+            if (!email.equals(user.email)) {
+                val itemMap = hashMapOf(
+                    "image" to user.image,
+                    "friends" to user.email,
+                    "nickname" to user.nickname
+                )
+                itemsCollectionRef.document(email).collection("friends").document(user.email)
+                    .set(itemMap)
+                    .addOnSuccessListener { }
+                    .addOnFailureListener { }
 
-            var boo = false
-            itemsCollectionRef.document(email).get()
-                .addOnSuccessListener {
-                    boo = it["friend"].toString().toBoolean()
-                }.addOnFailureListener{}
+                var boo = false
+                itemsCollectionRef.document(email).get()
+                    .addOnSuccessListener {
+                        boo = it["friend"].toString().toBoolean()
+                    }.addOnFailureListener {}
 
-            if (!boo) {
-                itemsCollectionRef.document(email).update("friend", true) .addOnSuccessListener {}
+                if (!boo) {
+                    itemsCollectionRef.document(email).update("friend", true)
+                        .addOnSuccessListener {}
+                }
+
+                Toast.makeText(context, user.nickname + "를 친구로 추가했습니다.", Toast.LENGTH_SHORT).show()
             }
-
-            Toast.makeText(context, user.nickname + "를 친구로 추가했습니다.", Toast.LENGTH_SHORT).show()
+            else {
+                Toast.makeText(context, "사용자 본인입니다.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view

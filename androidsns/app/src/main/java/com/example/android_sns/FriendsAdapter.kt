@@ -50,6 +50,9 @@ class FriendsAdapter (val context: Context?, val UserList: ArrayList<Friend>) : 
             view.findViewById<Button>(R.id.remove).setOnClickListener {
                 itemsCollectionRef.document(email).collection("friends").document(user.email).delete()
                 Toast.makeText(context, "친구목록에서 삭제하였습니다.", Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra("key", "remove")
+                startActivity(view.context,intent,null)
             }
 
             return view

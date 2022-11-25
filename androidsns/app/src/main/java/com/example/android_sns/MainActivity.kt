@@ -36,8 +36,17 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        timeline = Timeline().newInstance()
-        supportFragmentManager.beginTransaction().replace(R.id.frm, timeline).commit()
+        val intent = getIntent()
+        val key = intent.getStringExtra("key").toString()
+
+        if (key.equals("remove")) {
+            friends = Friends().newInstance()
+            supportFragmentManager.beginTransaction().replace(R.id.frm, friends).commit()
+        }
+        else {
+            timeline = Timeline().newInstance()
+            supportFragmentManager.beginTransaction().replace(R.id.frm, timeline).commit()
+        }
 
         val onBottomItemSelectedListener =
             NavigationBarView.OnItemSelectedListener {
