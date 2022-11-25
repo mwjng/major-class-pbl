@@ -74,6 +74,11 @@ class Timeline : Fragment() {
                         )
                     )
                 }
+                UserList.sortByDescending { it.date }
+                var Adapter = ListAdapter(context, UserList)
+                view.findViewById<ListView>(R.id.listview).adapter = Adapter
+
+
                 if (boo) {
                     itemsCollectionRef.document(email).collection("friends").get().addOnSuccessListener {
                         for (doc1 in it) {
@@ -99,11 +104,6 @@ class Timeline : Fragment() {
                                 }
                         }
                     }
-                }
-                else {
-                    UserList.sortByDescending { it.date }
-                    var Adapter = ListAdapter(context, UserList)
-                    view.findViewById<ListView>(R.id.listview).adapter = Adapter
                 }
             }
 
