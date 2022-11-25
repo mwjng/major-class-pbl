@@ -13,14 +13,14 @@
 
     <TextView
         android:id="@+id/friendname"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="100dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:text="TextView"
         android:textSize="20sp" />
 
@@ -28,7 +28,7 @@
         android:id="@+id/fprofile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
         android:text="프로필" />
 </LinearLayout>

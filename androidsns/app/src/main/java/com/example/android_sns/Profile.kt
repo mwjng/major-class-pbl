@@ -3,20 +3,21 @@ package com.example.android_sns
 import android.content.ClipData
 import android.content.ClipData.Item
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,9 +39,19 @@ class Profile : Fragment() {
     lateinit var profileImage : ImageView
     val db: FirebaseFirestore = Firebase.firestore
     val email = Firebase.auth.currentUser?.email.toString()
+    val storage = Firebase.storage
     val itemsCollectionRef = db.collection("users")
+    val imgRef = storage.reference.child("images/${email}PROFILE")
+    var imgUri = ""
     val readImg = registerForActivityResult(ActivityResultContracts.GetContent()){
         profileImage.setImageURI(it)
+        imgUri = it.toString()
+        val contentUri = it
+        if (contentUri != null) {
+            imgRef.putFile(contentUri).addOnCompleteListener{
+                //Toast.makeText(context, "업로드 대따", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
@@ -71,6 +82,14 @@ class Profile : Fragment() {
             var Adapter = ListAdapter(context, UserList)
             view.findViewById<ListView>(R.id.list2).adapter = Adapter
         }
+        /*storage.reference.child("images/${email}PROFILE").downloadUrl.addOnSuccessListener {
+            profileImage.setImageURI(it)
+        }*/
+
+        imgRef?.getBytes(Long.MAX_VALUE)?.addOnSuccessListener {
+            val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+            profileImage.setImageBitmap(bmp)
+        }
 
         queryItem(email, view)
 
@@ -78,6 +97,7 @@ class Profile : Fragment() {
             // 프로필 사진 클릭
             //navigatePhotos()
             readImg.launch("image/*")
+            //itemsCollectionRef.document(email).update("image", readImg) )
         }
         profile.setOnClickListener {
             startActivity(Intent(activity, ProfileSetting::class.java))
