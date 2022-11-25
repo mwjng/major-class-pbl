@@ -97,7 +97,10 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
             R.id.change -> {
-
+                startActivity(
+                    Intent(this, Account::class.java)
+                )
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)
