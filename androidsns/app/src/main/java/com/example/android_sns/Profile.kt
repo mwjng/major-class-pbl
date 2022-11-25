@@ -79,6 +79,7 @@ class Profile : Fragment() {
                 UserList.add(User(doc["image"].toString().toInt(), email, doc.id, doc["title"].toString(), doc["nickname"].toString(),
                     doc["content"].toString(), doc["like"].toString().toInt(), doc["date"].toString()))
             }
+            UserList.sortByDescending { it.date }
             var Adapter = ListAdapter(context, UserList)
             view.findViewById<ListView>(R.id.list2).adapter = Adapter
         }
