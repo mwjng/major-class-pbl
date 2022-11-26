@@ -4,18 +4,18 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../style/style.css'
-import { Component } from 'react';
 import interactionPlugin from "@fullcalendar/interaction";
 import { firestore } from "../firebase_config"
+import Modal from './Modal';
 
 export const Main = () => { //시작페이지
-    return(
-      <div className='mainPage'>
-        <h1>TEAM : 2 0 1 8</h1>
-      <h1><Link to ="calendar">C A L E N D A R</Link></h1>
-      </div>
-    );
-  }
+  return (
+    <div className='mainPage'>
+      <h1>TEAM : 2 0 1 8</h1>
+      <h1><Link to="calendar">캘린더 들어가기</Link></h1>
+    </div>
+  );
+}
 
 
 export const Error = () => { //에러페이지
@@ -27,11 +27,12 @@ export const Error = () => { //에러페이지
   );
 }
 
-
 const today = new Date();
 const calendar_data = firestore.collection("calendar_data");
-
 const Calendar = () => {
+
+  const [signup, setSignup] = useState(false);
+
   const [visible, setVisible] = useState(false);
   const [date, setDate] = useState(today);
 
@@ -46,7 +47,7 @@ const Calendar = () => {
     })
   }
   useEffect(() => {
-    getEventsData()
+    getEventsData();
   }, [])
 
   const handleDateSelect = (newDate) => {
@@ -60,15 +61,15 @@ const Calendar = () => {
     var del = confirm('삭제하시겠습니까?');
     if (del) {
       calendar_data.doc(clickInfo.event.startStr).delete();
-      getEventsData()
+      getEventsData();
+      console.log("데이터가 삭제되었습니다.")
     }
   }
-  
+
   const handleDateClick = (arg) => { // 날짜누르면 일정 추가
-    //<Modal open={modalopen} close={closeModal} header="Modal heading"></Modal>
     var event = prompt("일정을 입력하세요.",);
     if (event) {
-      calendar_data.doc(arg.dateStr).set({ date: arg.dateStr, title: `${event}` })
+      calendar_data.doc(arg.dateStr).set({ date: arg.dateStr, title: `${event}`, color: "" })
       getEventsData()
       console.log("데이터가 추가되었습니다.")
     }
@@ -76,8 +77,8 @@ const Calendar = () => {
       console.log("데이터가 null입니다. 추가되지 않았습니다.")
   }
 
-
   return (
+    <React.Fragment>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         headerToolbar={{
@@ -95,6 +96,10 @@ const Calendar = () => {
         events={eventsData}
         locale='ko'
       />
+      <div className='goHome'>
+        <h1><Link to="/">홈 화면</Link></h1>
+      </div>
+    </React.Fragment>
   );
 };
 

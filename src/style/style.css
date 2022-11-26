@@ -2,10 +2,25 @@ body {
     background-color: #BDB76B
 }
 
-.mainPage{
-    background-color:#BDB76B;
-    text-align:center;
-    font-size:large;
+.fc-header-toolbar {
+    font-family: "diary";
+
+}
+
+.mainPage {
+    background-color: #BDB76B;
+    text-align: center;
+    font-family: "diary";
+    font-size: large;
+    height: 100vw;
+    width: 100vw;
+}
+
+.goHome {
+    background-color: #BDB76B;
+    text-align: center;
+    font-family: "diary";
+    font-size: large;
     height: 100vw;
     width: 100vw;
 }
@@ -13,32 +28,46 @@ body {
 .fc-day-sun a {
     color: #CA5E59;
     text-decoration: none;
-  }
-  
+}
+
 .fc-day-sat a {
-    color:#F15B5B;
+    color: #F15B5B;
     text-decoration: none;
 }
+
 .fc td {
-      background:#FFFFF0;
-      color: #FFFFF0;
+    background: #FFFFF0;
+    color: #FFFFF0;
+    font-family: "diary";
 }
-.fc-day-mon a{
-    color: black;
-}
-.fc-day-wed a{
-    color: black;
-}
-.fc-day-tue a{
-    color: black;
-}
-.fc-day-fri a{
-    color: black;
-}
-.fc-day-thu a{
+
+.fc-day-mon a {
     color: black;
 }
 
-.fc-event{
+.fc-day-wed a {
+    color: black;
+}
+
+.fc-day-tue a {
+    color: black;
+}
+
+.fc-day-fri a {
+    color: black;
+}
+
+.fc-day-thu a {
+    color: black;
+}
+
+.fc-event {
     background: OliveDrab;
-  }
+    font-family: "diary";
+}
+
+@font-face {
+    font-family: "diary";
+    src: url("../fonts/EF_Diary.ttf");
+}
+
