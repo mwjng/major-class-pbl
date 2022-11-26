@@ -1,7 +1,7 @@
 package com.example.android_sns
 
 class User (
-    val image : Int,        // 이미지 -> 구현 해주세요
+    val image : Int,        // 이미지
     val writer: String,     // 글쓴사람 이메일
     val id : String,        // 글마다 id 부여
     val title : String,     // 글 제목
