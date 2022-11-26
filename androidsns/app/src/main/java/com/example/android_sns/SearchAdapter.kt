@@ -1,17 +1,16 @@
 package com.example.android_sns
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class SearchAdapter (val context: Context?, val UserList: ArrayList<Member>) : BaseAdapter(){
 
@@ -30,9 +29,16 @@ class SearchAdapter (val context: Context?, val UserList: ArrayList<Member>) : B
         val email = Firebase.auth.currentUser?.email.toString()
         val itemsCollectionRef = db.collection("users")
         val view : View = LayoutInflater.from(parent?.context).inflate(R.layout.search_user, null)
+        val img = view.findViewById<ImageView>(R.id.imageView3)
         val name = view.findViewById<TextView>(R.id.userName)
         val user = UserList[count]
         name.text = user.nickname
+
+        val imgRef = Firebase.storage.reference.child("images/${user.email}PROFILE")
+        imgRef?.getBytes(Long.MAX_VALUE)?.addOnSuccessListener {
+            val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+            img.setImageBitmap(bmp)
+        }
 
         view.findViewById<Button>(R.id.add).setOnClickListener {
             if (!email.equals(user.email)) {
