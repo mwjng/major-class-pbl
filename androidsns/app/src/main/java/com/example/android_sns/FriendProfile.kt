@@ -1,12 +1,14 @@
 package com.example.android_sns
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android_sns.databinding.ActivityFriendprofileBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class FriendProfile : AppCompatActivity() {
@@ -21,6 +23,12 @@ class FriendProfile : AppCompatActivity() {
 
         val intent = getIntent()
         val email = intent.getStringExtra("key").toString()
+
+        val imgRef = Firebase.storage.reference.child("images/${email}PROFILE")
+        imgRef?.getBytes(Long.MAX_VALUE)?.addOnSuccessListener {
+            val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+            binding.fprofileImg.setImageBitmap(bmp)
+        }
 
         var UserList = arrayListOf<User>()
 

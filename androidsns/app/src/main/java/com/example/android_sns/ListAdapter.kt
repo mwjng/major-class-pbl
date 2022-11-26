@@ -1,16 +1,15 @@
 package com.example.android_sns
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAdapter() {
 
@@ -32,6 +31,7 @@ class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAd
         val content = view.findViewById<TextView>(R.id.time_content)
         val like = view.findViewById<TextView>(R.id.time_count)
         val date = view.findViewById<TextView>(R.id.time_date)
+        val img = view.findViewById<ImageView>(R.id.content_img)
 
         val user = UserList[count]
         title.text = user.title
@@ -39,6 +39,13 @@ class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAd
         content.text = user.content
         like.text = user.like.toString()
         date.text = user.date
+
+        val imgRef = Firebase.storage.reference.child("images/${user.writer}_${user.date}")
+
+        imgRef?.getBytes(Long.MAX_VALUE)?.addOnSuccessListener {
+            val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+            img.setImageBitmap(bmp)
+        }
 
         view.findViewById<Button>(R.id.timeID).setOnClickListener {
             like.text = (user.like+1).toString()
