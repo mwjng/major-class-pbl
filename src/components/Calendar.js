@@ -47,7 +47,7 @@ const Calendar = () => {
   }
   useEffect(() => {
     getEventsData()
-  }, [eventsData])
+  }, [])
 
   const handleDateSelect = (newDate) => {
     setDate(newDate);
@@ -60,15 +60,16 @@ const Calendar = () => {
     var del = confirm('삭제하시겠습니까?');
     if (del) {
       calendar_data.doc(clickInfo.event.startStr).delete();
+      getEventsData()
     }
   }
   
-  const handleDateClick = (arg) => { // bind with an arrow function
+  const handleDateClick = (arg) => {
     console.log(arg);
-    //<Modal open={modalopen} close={closeModal} header="Modal heading"></Modal>
     var event = prompt("일정을 입력하세요.",);
     if (event) {
       calendar_data.doc(arg.dateStr).set({ date: arg.dateStr, title: `${event}` })
+      getEventsData()
       console.log("데이터가 추가되었습니다.")
     }
     else
