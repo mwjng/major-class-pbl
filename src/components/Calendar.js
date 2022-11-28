@@ -6,11 +6,6 @@ import { Link, useLocation } from 'react-router-dom';
 import '../style/style.css'
 import interactionPlugin from "@fullcalendar/interaction";
 import { firestore } from "../firebase_config"
-import Modal from './Modal';
-
-const goSelect = () => {
-  document.location.href('/');
-}
 
 export const Main = () => { //시작페이지
   return (
@@ -30,12 +25,14 @@ export const Error = () => { //에러페이지
     </div>
   );
 }
-
+var color = "#BDB76B";
 const today = new Date();
 const calendar_data = firestore.collection("calendar_data");
+
 const Calendar = () => {
 
-  const [signup, setSignup] = useState(false);
+
+  const [event_color, setColor] = useState(color);
 
   const [visible, setVisible] = useState(false);
   const [date, setDate] = useState(today);
@@ -45,7 +42,6 @@ const Calendar = () => {
     calendar_data.get().then((snapshot) => {
       const events = snapshot.docs.map(event => event.data());
       setEventsData(events)
-      console.log(events)
     }).catch((e) => {
       console.log(e + "fetching error")
     })
@@ -73,9 +69,10 @@ const Calendar = () => {
   const handleDateClick = (arg) => { // 날짜누르면 일정 추가
     var event = prompt("일정을 입력하세요.",);
     if (event) {
-      calendar_data.doc(arg.dateStr + event).set({date: arg.dateStr, title: `${event}`, color: "" })
+      calendar_data.doc(arg.dateStr + event).set({ date: arg.dateStr, title: `${event}`, color: `${event_color}` })
       getEventsData()
       console.log("데이터가 추가되었습니다.")
+      console.log(event_color);
     }
     else
       console.log("데이터가 null입니다. 추가되지 않았습니다.")
@@ -100,10 +97,22 @@ const Calendar = () => {
         events={eventsData}
         locale='ko'
       />
-      <div className='goHome'>
-        <h1><Link to="insert">일정 추가</Link> @ <Link to="/">홈 화면</Link></h1>
+
+      <div className='button'>
+        <button onClick={() => setColor("#BDB76B")} style={{background:'#BDB76B', color:'white'}}>기본</button>
+        <button onClick={() => setColor("#FF8E7F")} style={{background:'#FF8E7F', color:'white'}}>빨강</button>
+        <button onClick={() => setColor("#FFCB6B")} style={{background:'#FFCB6B', color:'white'}}>주황</button>
+        <button onClick={() => setColor("#A5EA89")} style={{background:'#A5EA89', color:'white'}}>초록</button>
+        <button onClick={() => setColor("#89A5EA")} style={{background:'#89A5EA', color:'white'}}>하늘</button>
+        <button onClick={() => setColor("#800000")} style={{background:'#800000', color:'white'}}>고동</button>
+        <button onClick={() => setColor("#59227C")} style={{background:'#59227C', color:'white'}}>보라</button>
+        <button onClick={() => setColor("#929292")} style={{background:'#929292', color:'white'}}>회색</button>
       </div>
-    </React.Fragment>
+
+      <div className='goHome'>
+        <h1><Link to="/">홈 화면</Link></h1>
+      </div>
+    </React.Fragment >
   );
 };
 
