@@ -98,18 +98,16 @@ const Calendar = () => {
         locale='ko'
       />
 
-
       <div className='button'>
-        <button onClick={() => setColor("#BDB76B")}>기본</button>
-        <button onClick={() => setColor("#FF8E7F")}>빨강</button>
-        <button onClick={() => setColor("#FFCB6B")}>주황</button>
-        <button onClick={() => setColor("#A5EA89")}>초록</button>
+        <button onClick={() => setColor("#BDB76B")} style={{background:'#BDB76B', color:'white'}}>기본</button>
+        <button onClick={() => setColor("#FF8E7F")} style={{background:'#FF8E7F', color:'white'}}>빨강</button>
+        <button onClick={() => setColor("#FFCB6B")} style={{background:'#FFCB6B', color:'white'}}>주황</button>
+        <button onClick={() => setColor("#A5EA89")} style={{background:'#A5EA89', color:'white'}}>초록</button>
       </div>
 
       <div className='goHome'>
         <h1><Link to="/">홈 화면</Link></h1>
       </div>
-
     </React.Fragment >
   );
 };
