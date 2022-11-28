@@ -8,6 +8,10 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { firestore } from "../firebase_config"
 import Modal from './Modal';
 
+const goSelect = () => {
+  document.location.href('/');
+}
+
 export const Main = () => { //시작페이지
   return (
     <div className='mainPage'>
@@ -97,7 +101,7 @@ const Calendar = () => {
         locale='ko'
       />
       <div className='goHome'>
-        <h1><Link to="/">홈 화면</Link></h1>
+        <h1><Link to="insert">일정 추가</Link> @ <Link to="/">홈 화면</Link></h1>
       </div>
     </React.Fragment>
   );
