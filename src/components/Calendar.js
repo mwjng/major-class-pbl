@@ -103,6 +103,10 @@ const Calendar = () => {
         <button onClick={() => setColor("#FF8E7F")} style={{background:'#FF8E7F', color:'white'}}>빨강</button>
         <button onClick={() => setColor("#FFCB6B")} style={{background:'#FFCB6B', color:'white'}}>주황</button>
         <button onClick={() => setColor("#A5EA89")} style={{background:'#A5EA89', color:'white'}}>초록</button>
+        <button onClick={() => setColor("#89A5EA")} style={{background:'#89A5EA', color:'white'}}>하늘</button>
+        <button onClick={() => setColor("#800000")} style={{background:'#800000', color:'white'}}>고동</button>
+        <button onClick={() => setColor("#59227C")} style={{background:'#59227C', color:'white'}}>보라</button>
+        <button onClick={() => setColor("#929292")} style={{background:'#929292', color:'white'}}>회색</button>
       </div>
 
       <div className='goHome'>

@@ -4,6 +4,7 @@ body {
 
 .fc-header-toolbar {
     font-family: "diary";
+    color:#CA5E59;
 }
 
 .mainPage {
@@ -64,7 +65,6 @@ body {
     background: OliveDrab;
     font-family: "diary";
 }
-
 
 @font-face {
     font-family: "diary";
