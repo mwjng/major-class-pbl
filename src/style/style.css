@@ -4,7 +4,6 @@ body {
 
 .fc-header-toolbar {
     font-family: "diary";
-
 }
 
 .mainPage {
@@ -65,6 +64,16 @@ body {
     background: OliveDrab;
     font-family: "diary";
 }
+
+.button {
+    float: left;
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    margin: 10px;
+    padding: 20px;
+}
+
 
 @font-face {
     font-family: "diary";
