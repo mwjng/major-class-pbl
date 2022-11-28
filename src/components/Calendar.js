@@ -60,7 +60,7 @@ const Calendar = () => {
     console.log(clickInfo.event.id) // id 값 나옴    
     var del = confirm('삭제하시겠습니까?');
     if (del) {
-      calendar_data.doc(clickInfo.event.startStr).delete();
+      calendar_data.doc(clickInfo.event.startStr + clickInfo.event.title).delete();
       getEventsData();
       console.log("데이터가 삭제되었습니다.")
     }
@@ -69,7 +69,7 @@ const Calendar = () => {
   const handleDateClick = (arg) => { // 날짜누르면 일정 추가
     var event = prompt("일정을 입력하세요.",);
     if (event) {
-      calendar_data.doc(arg.dateStr).set({ date: arg.dateStr, title: `${event}`, color: "" })
+      calendar_data.doc(arg.dateStr + event).set({date: arg.dateStr, title: `${event}`, color: "" })
       getEventsData()
       console.log("데이터가 추가되었습니다.")
     }
