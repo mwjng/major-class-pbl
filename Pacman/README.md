@@ -1,1 +1,1 @@
-# simple Pac-Man game made in java
+### simple Pac-Man game made in java
