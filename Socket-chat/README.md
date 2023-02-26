@@ -1,1 +1,1 @@
-socket chat program imitating KakaoTalk
+socket chat program imitating KakaoTalk.
